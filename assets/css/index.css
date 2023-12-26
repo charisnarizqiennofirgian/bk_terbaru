@@ -1,0 +1,4 @@
+.navbar-nav .nav-item:hover .nav-link {
+  border-bottom: 2px solid rgb(38, 57, 82); 
+  padding-bottom: 2px; 
+}
