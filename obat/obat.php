@@ -72,18 +72,17 @@ include("C:/xampp/htdocs/poliklinik/inc/koneksi.php");
 <script>
   $(document).ready(function() {
     var table = $('#daftar-obat').DataTable({
-      dom: 'Bfrtip', // Show buttons in the specified location
+      dom: 'Bfrtip', 
       buttons: [{
-        extend: 'excel', // Use the Excel export button
-        text: 'Export to Excel', // Set the custom text for the button
-        title: 'Daftar obat', // Set the title for the Excel sheet
-        className: 'btn btn-primary' // Add Bootstrap 5 button classes
+        extend: 'excel',
+        text: 'Export to Excel',
+        title: 'Daftar obat', 
+        className: 'btn btn-primary'
       }],
     });
 
-    // Add a click event handler for the export button
     $('#export-excel').on('click', function() {
-      table.buttons('excel').trigger(); // Trigger the Excel export action
+      table.buttons('excel').trigger();
     });
   });
 </script>

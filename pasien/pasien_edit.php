@@ -10,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $query = "UPDATE pasien SET nama='$nama', no_ktp='$no_ktp', no_hp='$no_hp' WHERE id=$id";
   if ($mysqli->query($query)) {
     header("Location: index.php?page=pasien/pasien");
-    exit;  // Penting untuk mencegah eksekusi kode lebih lanjut setelah pengalihan header
+    exit;  
   } else {
     echo "Error: " . $query . "<br>" . $mysqli->error;
   }
@@ -32,7 +32,7 @@ if (isset($_GET['id'])) {
       <input type="text" class="form-control" id="nama" name="nama" value="<?php echo $row['nama']; ?>">
     </div>
     <div class="mb-3">
-      <label for="no_ktp" class="form-label">no_ktp</label>
+      <label for="no_ktp" class="form-label">No ktp</label>
       <input type="text" class="form-control" id="no_ktp" name="no_ktp" value="<?php echo $row['no_ktp']; ?>">
     </div>
     <div class="mb-3">

@@ -16,24 +16,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $stmt->execute();
   $result = $stmt->get_result();
 
-  if ($row = $result->fetch_assoc()) {
-    if (password_verify($password, $row["password"])) {
-      session_start();
-      $_SESSION['user_id'] = $row['id'];
-      $_SESSION['username'] = $row['username']; // Tambahkan ini untuk menyimpan username
-      header("Location: index.php");
-      exit;
-    } else {
-      $showSwal = true;
-      $swalType = 'error';
-      $swalTitle = 'Login gagal';
-      $swalText = 'Username atau Password salah.';
-    }
-  } else {
+  if ($result->num_rows > 0) {
     $showSwal = true;
     $swalType = 'error';
-    $swalTitle = 'Login gagal';
-    $swalText = 'Username atau Password salah.';
+    $swalTitle = 'Username sudah digunakan';
+    $swalText = 'Silakan pilih username lain.';
+  } else {
+    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+    $stmt = $mysqli->prepare("INSERT INTO user (username, password) VALUES (?, ?)");
+    $stmt->bind_param("ss", $username, $hashed_password);
+    if ($stmt->execute()) {
+      header("Location: login.php"); // Redirect to login page after successful registration
+      exit;
+    } else {
+      $error = "Error: " . $stmt->error;
+    }
   }
   $stmt->close();
 }
@@ -45,7 +42,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login</title>
+  <title>Register</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
 </head>
@@ -58,22 +55,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div class="card">
           <div class="card-body">
 
-            <!-- Login Form -->
-            <div id="loginForm">
-              <h4 class="card-title text-center mb-4">Masuk</h4>
+            <div id="signupForm">
+              <h4 class="card-title text-center mb-4">Daftar Akun</h4>
               <form method="POST" action="">
                 <div class="mb-3">
-                  <label for="loginUsername" class="form-label">Username</label>
-                  <input type="text" name="username" class="form-control" id="loginUsername" placeholder="Username" required>
+                  <label for="signupUsername" class="form-label">Username</label>
+                  <input type="text" name="username" class="form-control" id="signupUsername" placeholder="Username" required>
                 </div>
                 <div class="mb-3">
-                  <label for="loginPassword" class="form-label">Password</label>
-                  <input type="password" name="password" class="form-control" id="loginPassword" placeholder="Password" required>
+                  <label for="signupPassword" class="form-label">Password</label>
+                  <input type="password" name="password" class="form-control" id="signupPassword" placeholder="Password" required>
                 </div>
-                <button type="submit" name="login" class="btn btn-primary w-100">Login</button>
+                <button type="submit" name="signup" class="btn btn-success w-100">Sign up</button>
                 <p class="text-danger mt-2"><?php echo $error; ?></p>
                 <div class="text-center mt-3">
-                  Belum punya akun? <a href="register.php">Daftar sekarang</a>
+                  Sudah punya akun? <a href="login.php">Login sekarang</a>
                 </div>
               </form>
             </div>

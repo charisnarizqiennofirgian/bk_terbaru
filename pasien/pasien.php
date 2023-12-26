@@ -16,7 +16,7 @@ include("C:/xampp/htdocs/poliklinik/inc/koneksi.php");
             <input type="text" class="form-control" id="nama" name="nama">
           </div>
           <div class="mb-3">
-            <label for="no_ktp" class="form-label">no_ktp</label>
+            <label for="no_ktp" class="form-label">No ktp</label>
             <input type="text" class="form-control" id="no_ktp" name="no_ktp">
           </div>
           <div class="mb-3">
@@ -38,8 +38,8 @@ include("C:/xampp/htdocs/poliklinik/inc/koneksi.php");
       <tr>
         <th>No</th>
         <th>Nama</th>
-        <th>no_ktp</th>
-        <th>no_hp</th>
+        <th>Nomor ktp</th>
+        <th>Nomor hp</th>
         <th>Aksi</th>
       </tr>
     </thead>
@@ -72,18 +72,16 @@ include("C:/xampp/htdocs/poliklinik/inc/koneksi.php");
 <script>
   $(document).ready(function() {
     var table = $('#daftar-pasien').DataTable({
-      dom: 'Bfrtip', // Show buttons in the specified location
+      dom: 'Bfrtip', 
       buttons: [{
-        extend: 'excel', // Use the Excel export button
-        text: 'Export to Excel', // Set the custom text for the button
-        title: 'Daftar Pasien', // Set the title for the Excel sheet
-        className: 'btn btn-primary' // Add Bootstrap 5 button classes
+        extend: 'excel',
+        text: 'Export to Excel', 
+        title: 'Daftar Pasien', 
+        className: 'btn btn-primary' 
       }],
     });
-
-    // Add a click event handler for the export button
     $('#export-excel').on('click', function() {
-      table.buttons('excel').trigger(); // Trigger the Excel export action
+      table.buttons('excel').trigger(); 
     });
   });
 </script>

@@ -5,9 +5,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $id = $_POST['id'];
   $nama = $_POST['nama'];
   $alamat = $_POST['alamat'];
-  $nomor_hp = $_POST['nomor_hp'];
+  $no_hp = $_POST['no_hp'];
 
-  $query = "UPDATE dokter SET nama='$nama', alamat='$alamat', nomor_hp='$nomor_hp' WHERE id=$id";
+  $query = "UPDATE dokter SET nama='$nama', alamat='$alamat', no_hp='$no_hp' WHERE id=$id";
   if ($mysqli->query($query)) {
     header("Location: index.php?page=dokter/dokter");
     exit;  // Penting untuk mencegah eksekusi kode lebih lanjut setelah pengalihan header
@@ -36,8 +36,8 @@ if (isset($_GET['id'])) {
       <input type="text" class="form-control" id="alamat" name="alamat" value="<?php echo $row['alamat']; ?>">
     </div>
     <div class="mb-3">
-      <label for="nomor_hp" class="form-label">Nomor HP</label>
-      <input type="text" class="form-control" id="nomor_hp" name="nomor_hp" value="<?php echo $row['nomor_hp']; ?>">
+      <label for="no_hp" class="form-label">Nomor HP</label>
+      <input type="text" class="form-control" id="no_hp" name="no_hp" value="<?php echo $row['no_hp']; ?>">
     </div>
     <button type="submit" class="btn btn-primary">Update</button>
   </form>

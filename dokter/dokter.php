@@ -21,7 +21,7 @@ include("C:/xampp/htdocs/poliklinik/inc/koneksi.php");
           </div>
           <div class="mb-3">
             <label for="nomor_hp" class="form-label">No HP</label>
-            <input type="text" class="form-control" id="nomor_hp" name="nomor_hp" required>
+            <input type="text" class="form-control" id="no_hp" name="no_hp" required>
           </div>
           <button type="submit" class="btn btn-primary">Submit</button>
         </form>
@@ -52,7 +52,7 @@ include("C:/xampp/htdocs/poliklinik/inc/koneksi.php");
           <td><?php echo $no++ ?></td>
           <td><?php echo $data['nama'] ?></td>
           <td><?php echo $data['alamat'] ?></td>
-          <td><?php echo $data['nomor_hp'] ?></td>
+          <td><?php echo $data['no_hp'] ?></td>
           <td>
             <a class="btn btn-warning" href="index.php?page=dokter/dokter_edit&id=<?php echo $data['id']; ?>">Edit</a>
             <a class="btn btn-danger" href="index.php?page=dokter/aksi_dokter&action=delete&id=<?php echo $data['id'] ?>">Hapus</a>
