@@ -32,7 +32,8 @@ include("C:/xampp/htdocs/poliklinik/db/koneksi.php");
 
 <div class="container mt-5 mb-5">
   <h3 class="mt-5 text-center">DAFTAR OBAT</h3>
-  <table class="table table-striped mt-3" id="daftar-obat">
+  <div class="table-responsive">
+    <table class="table table-bordered table-hover" id="daftar-obat">
     <thead>
       <tr>
         <th>No</th>

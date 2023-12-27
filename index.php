@@ -34,7 +34,7 @@ if (!isset($_SESSION['user_id'])) {
 
 <body>
 
-  <div class="sidebar">
+  <div class="sidebar"> 
     <a class="navbar-brand fw-bold" href="index.php" style="font-size: 24px;">
       <i class="fas fa-hospital fa-2x"></i>
       MyCare
@@ -53,11 +53,6 @@ if (!isset($_SESSION['user_id'])) {
       <li class="nav-item">
         <a class="nav-link font-weight-bold" href="index.php?page=obat/obat">
           <i class="fas fa-pills"></i> Obat
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link font-weight-bold" href="index.php?page=periksa/periksa">
-          <i class="fas fa-stethoscope"></i> Periksa
         </a>
       </li>
       <li class="nav-item">
