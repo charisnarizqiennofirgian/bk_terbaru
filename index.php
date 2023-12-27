@@ -5,7 +5,23 @@ if (!isset($_SESSION['user_id'])) {
   header("Location: login.php");
   exit;
 }
+
+// if (isset($_SESSION['username'])) {
+//   $username = htmlspecialchars($_SESSION['username']);
+//   $role = getRoleByUsername($username);
+//   if ($role === 'admin') {
+//     header("Location: index.php?page=obat/obat");
+//     exit;
+//   } elseif ($role === 'dokter') {
+//   } else {
+//   }
+// } else {
+//   header("Location: login.php");
+//   exit;
+// }
+
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -17,7 +33,7 @@ if (!isset($_SESSION['user_id'])) {
   <link rel="stylesheet" href="assets/css/index.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
- <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
   <link href="https://cdn.datatables.net/1.11.3/css/dataTables.bootstrap5.min.css" rel="stylesheet">
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
@@ -56,6 +72,9 @@ if (!isset($_SESSION['user_id'])) {
         </a>
       </li>
       <li class="nav-item">
+        <a class="nav-link fw-semibold" href="index.php?page=periksa/periksa">Periksa</a>
+      </li>
+      <li class="nav-item">
           <a class="btn font-weight-bold ml-md-3 m-4" href="logout.php">
             <i class="fas fa-sign-out-alt"></i> Logout
           </a>
@@ -84,7 +103,40 @@ if (!isset($_SESSION['user_id'])) {
         echo "<p class='text-center'>Page Not Found</p>";
       }
     }
-    ?>
+
+    // function getRoleByUsername($username) {
+    //   $servername = "your_database_server";
+    //   $dbusername = "your_database_username";
+    //   $dbpassword = "your_database_password";
+    //   $dbname = "your_database_name";
+
+    //   $conn = new mysqli($servername, $dbusername, $dbpassword, $dbname);
+
+    //   if ($conn->connect_error) {
+    //     die("Connection failed: " . $conn->connect_error);
+    //   }
+
+    //   $sql = "SELECT role FROM users WHERE username = ?";
+    //   $stmt = $conn->prepare($sql);
+    //   $stmt->bind_param("s", $username);
+    //   $stmt->execute();
+    //   $result = $stmt->get_result();
+
+    //   if ($result->num_rows > 0) {
+    //     $row = $result->fetch_assoc();
+    //     $role = $row['role'];
+    //     $stmt->close();
+    //     $conn->close();
+    //     return $role;
+    //   } else {
+    //     $stmt->close();
+    //     $conn->close();
+    //     return null;
+    //   }
+
+    // }
+  ?>
+    
   </div>
 
   <script>
