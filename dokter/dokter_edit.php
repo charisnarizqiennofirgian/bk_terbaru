@@ -1,5 +1,5 @@
 <?php
-include("C:/xampp/htdocs/poliklinik/inc/koneksi.php");
+include("C:/xampp/htdocs/poliklinik/db/koneksi.php");
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $id = $_POST['id'];
@@ -10,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $query = "UPDATE dokter SET nama='$nama', alamat='$alamat', no_hp='$no_hp' WHERE id=$id";
   if ($mysqli->query($query)) {
     header("Location: index.php?page=dokter/dokter");
-    exit;  // Penting untuk mencegah eksekusi kode lebih lanjut setelah pengalihan header
+    exit;
   } else {
     echo "Error: " . $query . "<br>" . $mysqli->error;
   }

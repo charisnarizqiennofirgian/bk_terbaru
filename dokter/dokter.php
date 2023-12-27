@@ -1,5 +1,5 @@
 <?php
-include("C:/xampp/htdocs/poliklinik/inc/koneksi.php");
+include("C:/xampp/htdocs/poliklinik/db/koneksi.php");
 ?>
 
 <div class="modal fade" id="dokterModal" tabindex="-1" aria-labelledby="dokterModalLabel" aria-hidden="true">

@@ -67,10 +67,9 @@ if (!isset($_SESSION['user_id'])) {
       </li>
     </ul>
   </div>
-  <!-- Content area next to the sidebar -->
  <div class="content">
     <?php
-    require_once("inc/koneksi.php");
+    require_once("db/koneksi.php");
 
     if (isset($_SESSION['username'])) {
       $username = htmlspecialchars($_SESSION['username']);

@@ -1,5 +1,5 @@
 <?php
-include("C:/xampp/htdocs/poliklinik/inc/koneksi.php");
+include("C:/xampp/htdocs/poliklinik/db/koneksi.php");
 
 // Mengambil data dokter dan pasien untuk dropdown
 $dokters = mysqli_query($mysqli, "SELECT * FROM dokter");

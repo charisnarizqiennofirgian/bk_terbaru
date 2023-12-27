@@ -1,17 +1,15 @@
 <?php
-include("C:/xampp/htdocs/poliklinik/inc/koneksi.php");
+include("C:/xampp/htdocs/poliklinik/db/koneksi.php");
 
-// Inisialisasi variabel
 $id = $id_dokter = $id_pasien = $tanggal_periksa = $waktu = $obat = $catatan = '';
 
-// Jika form disubmit
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $id = $_POST['id'];
   $id_dokter = $_POST['id_dokter'];
   $id_pasien = $_POST['id_pasien'];
   $tanggal_periksa = date('Y-m-d', strtotime($_POST['tanggal_periksa']));
   $waktu = $_POST['waktu'];
-  $id_obat = $_POST['id_obat']; // Ubah ini dari 'obat' menjadi 'id_obat'
+  $id_obat = $_POST['id_obat'];
   $catatan = $_POST['catatan'];
 
   $query = "UPDATE periksa SET id_dokter='$id_dokter', id_pasien='$id_pasien', tanggal_periksa='$tanggal_periksa', waktu='$waktu', id_obat='$id_obat', catatan='$catatan' WHERE id='$id'";
@@ -23,11 +21,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   }
 }
 
-// Cek apakah ada parameter ID di URL
 if (isset($_GET['id'])) {
   $id = $_GET['id'];
 
-  // Mengambil data pemeriksaan berdasarkan ID
   $query = "SELECT * FROM periksa WHERE id='$id'";
   $result = mysqli_query($mysqli, $query);
 
@@ -44,7 +40,6 @@ if (isset($_GET['id'])) {
   }
 }
 
-// Ambil data dokter dan pasien untuk dropdown
 $dokters = mysqli_query($mysqli, "SELECT * FROM dokter");
 $pasiens = mysqli_query($mysqli, "SELECT * FROM pasien");
 $obat = mysqli_query($mysqli, "SELECT * FROM obat");
@@ -95,7 +90,7 @@ $obat = mysqli_query($mysqli, "SELECT * FROM obat");
       <label for="id_obat" class="form-label">Obat</label>
       <select class="form-control" id="id_obat" name="id_obat">
         <?php
-        while ($obat_item = mysqli_fetch_assoc($obat)) { // Ganti $obat menjadi $obat_item
+        while ($obat_item = mysqli_fetch_assoc($obat)) {
           echo "<option value='" . $obat_item['id'] . "'>" . $obat_item['nama'] . "</option>";
         }
         ?>

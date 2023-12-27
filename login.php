@@ -1,5 +1,5 @@
 <?php
-include("inc/koneksi.php");
+include("db/koneksi.php");
 
 $error = "";
 $showSwal = false; 

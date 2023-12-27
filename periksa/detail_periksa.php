@@ -1,6 +1,6 @@
 <div class="container mt-5">
   <?php
-  include("C:/xampp/htdocs/poliklinik/inc/koneksi.php");
+  include("C:/xampp/htdocs/poliklinik/db/koneksi.php");
 
   // Periksa apakah parameter ID ada dalam URL
   if (isset($_GET['id'])) {
