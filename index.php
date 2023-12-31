@@ -6,22 +6,34 @@ if (!isset($_SESSION['user_id'])) {
   exit;
 }
 
-// if (isset($_SESSION['username'])) {
-//   $username = htmlspecialchars($_SESSION['username']);
-//   $role = getRoleByUsername($username);
-//   if ($role === 'admin') {
-//     header("Location: index.php?page=obat/obat");
-//     exit;
-//   } elseif ($role === 'dokter') {
-//   } else {
-//   }
-// } else {
-//   header("Location: login.php");
-//   exit;
-// }
+require_once("db/koneksi.php");
 
+// Check if user is authenticated
+if (!isset($_SESSION['username'])) {
+  header("Location: login.php");
+  exit;
+}
+
+$username = htmlspecialchars($_SESSION['username']);
+
+if (isset($_SESSION['role'])) {
+  $role = $_SESSION['role'];
+  switch ($role) {
+    case 'admin':
+      header("Location: admin.php");
+      exit;
+      break;
+
+    case 'dokter':
+      header("Location: doctor.php");
+      exit;
+      break;
+
+    default:
+      break;
+  }
+}
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -38,62 +50,40 @@ if (!isset($_SESSION['user_id'])) {
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
   <script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap5.min.js"></script>
-  
 
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/2.1.0/css/buttons.dataTables.min.css">
   <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/buttons/2.1.0/js/dataTables.buttons.min.js"></script>
   <script type="text/javascript" charset="utf8" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.5/jszip.min.js"></script>
   <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/buttons/2.1.0/js/buttons.html5.min.js"></script>
   <link rel="stylesheet" href="assets/css/navbar.css">
-
 </head>
 
 <body>
 
-  <div class="sidebar"> 
+  <div class="sidebar">
     <a class="navbar-brand fw-bold" href="index.php" style="font-size: 24px;">
       <i class="fas fa-hospital fa-2x"></i>
       MyCare
     </a>
     <ul class="navbar-nav ml-auto">
       <li class="nav-item">
-        <a class="nav-link font-weight-bold" href="index.php?page=dokter/dokter">
-          <i class="fas fa-user-md"></i> Dokter
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link font-weight-bold" href="index.php?page=pasien/pasien">
-          <i class="fas fa-user"></i> Pasien
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link font-weight-bold" href="index.php?page=obat/obat">
-          <i class="fas fa-pills"></i> Obat
-        </a>
-      </li>
-      <li class="nav-item">
         <a class="nav-link fw-semibold" href="index.php?page=periksa/periksa">Periksa</a>
       </li>
       <li class="nav-item">
-          <a class="btn font-weight-bold ml-md-3 m-4" href="logout.php">
-            <i class="fas fa-sign-out-alt"></i> Logout
-          </a>
+        <a class="nav-link fw-semibold" href="index.php?page=periksa/periksa">Jadwal Poliklinik</a>
+      </li>
+      <li class="nav-item">
+        <a class="btn font-weight-bold ml-md-3 m-4" href="logout.php">
+          <i class="fas fa-sign-out-alt"></i> Logout
+        </a>
       </li>
     </ul>
   </div>
- <div class="content">
+  <div class="content">
+    <h2>Selamat Datang, <?= $username ?>!</h2>
+    <p>Terima kasih telah menggunakan layanan MyCare Polyclinic. Kami siap memberikan pelayanan kesehatan terbaik untuk Anda.</p>
+
     <?php
-    require_once("db/koneksi.php");
-
-    if (isset($_SESSION['username'])) {
-      $username = htmlspecialchars($_SESSION['username']);
-      echo "<h2>Selamat Datang, $username!</h2>";
-      echo "<p>Terima kasih telah menggunakan layanan MyCare Polyclinic. Kami siap memberikan pelayanan kesehatan terbaik untuk Anda.</p>";
-    } else {
-      echo "<h2>Selamat Datang di MyCare Polyclinic</h2>";
-      echo "<p>Untuk mengakses layanan kami, silakan login terlebih dahulu.</p>";
-    }
-
     if (isset($_GET['page'])) {
       $page = htmlentities($_GET['page']);
 
@@ -103,45 +93,12 @@ if (!isset($_SESSION['user_id'])) {
         echo "<p class='text-center'>Page Not Found</p>";
       }
     }
-
-    // function getRoleByUsername($username) {
-    //   $servername = "your_database_server";
-    //   $dbusername = "your_database_username";
-    //   $dbpassword = "your_database_password";
-    //   $dbname = "your_database_name";
-
-    //   $conn = new mysqli($servername, $dbusername, $dbpassword, $dbname);
-
-    //   if ($conn->connect_error) {
-    //     die("Connection failed: " . $conn->connect_error);
-    //   }
-
-    //   $sql = "SELECT role FROM users WHERE username = ?";
-    //   $stmt = $conn->prepare($sql);
-    //   $stmt->bind_param("s", $username);
-    //   $stmt->execute();
-    //   $result = $stmt->get_result();
-
-    //   if ($result->num_rows > 0) {
-    //     $row = $result->fetch_assoc();
-    //     $role = $row['role'];
-    //     $stmt->close();
-    //     $conn->close();
-    //     return $role;
-    //   } else {
-    //     $stmt->close();
-    //     $conn->close();
-    //     return null;
-    //   }
-
-    // }
-  ?>
-    
+    ?>
   </div>
 
   <script>
-    $(document).ready(function() {
-      $(window).scroll(function() {
+    $(document).ready(function () {
+      $(window).scroll(function () {
         if ($(this).scrollTop() > 50) {
           $('.navbar').addClass('scrolled');
         } else {
@@ -153,7 +110,6 @@ if (!isset($_SESSION['user_id'])) {
   <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-
 </body>
 
 </html>
