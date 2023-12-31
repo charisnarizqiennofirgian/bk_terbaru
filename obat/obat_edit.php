@@ -9,7 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
   $query = "UPDATE obat SET nama='$nama', kemasan='$kemasan', harga='$harga' WHERE id=$id";
   if ($mysqli->query($query)) {
-    header("Location: index.php?page=obat/obat");
+    header("Location: ?page=obat/obat");
     exit;  
   } else {
     echo "Error: " . $query . "<br>" . $mysqli->error;

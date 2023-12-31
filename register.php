@@ -10,7 +10,7 @@ $swalText = '';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST["username"];
     $password = $_POST["password"];
-    $role = $_POST["role"]; // New line to get the selected role
+    $role = $_POST["role"];
 
     $stmt = $mysqli->prepare("SELECT * FROM user WHERE username=?");
     $stmt->bind_param("s", $username);
@@ -25,10 +25,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
         $stmt = $mysqli->prepare("INSERT INTO user (username, password, role) VALUES (?, ?, ?)");
-        $stmt->bind_param("sss", $username, $hashed_password, $role); // Updated to include role
+        $stmt->bind_param("sss", $username, $hashed_password, $role);
         if ($stmt->execute()) {
-            header("Location: login.php"); // Redirect to login page after successful registration
-            exit;
+            $showSwal = true;
+            $swalType = 'success';
+            $swalTitle = 'Pendaftaran berhasil';
+            $swalText = 'Akun berhasil dibuat. Silakan login untuk mengakses akun Anda.';
+
+            header("Location: login.php");
         } else {
             $error = "Error: " . $stmt->error;
         }

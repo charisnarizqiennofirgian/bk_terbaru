@@ -8,7 +8,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $query = "INSERT INTO dokter(nama, alamat, no_hp) VALUES ('$nama', '$alamat', '$no_hp')";
     if ($mysqli->query($query)) {
-        header("Location: index.php?page=dokter/dokter");
+        header("Location: ?page=dokter/dokter");
     } else {
         echo "Error: " . $query . "<br>" . $mysqli->error;
     }
@@ -18,7 +18,7 @@ if ($_GET['action'] == 'delete' && isset($_GET['id'])) {
     $id = $_GET['id'];
     $query = "DELETE FROM dokter WHERE id='$id'";
     if ($mysqli->query($query)) {
-        header("Location: index.php?page=dokter/dokter");
+        header("Location: ?page=dokter/dokter");
     } else {
         echo "Error: " . $query . "<br>" . $mysqli->error;
     }

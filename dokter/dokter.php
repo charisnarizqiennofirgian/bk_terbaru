@@ -54,8 +54,8 @@ include("C:/xampp/htdocs/poliklinik/db/koneksi.php");
           <td><?php echo $data['alamat'] ?></td>
           <td><?php echo $data['no_hp'] ?></td>
           <td>
-            <a class="btn btn-warning" href="index.php?page=dokter/dokter_edit&id=<?php echo $data['id']; ?>">Edit</a>
-            <a class="btn btn-danger" href="index.php?page=dokter/aksi_dokter&action=delete&id=<?php echo $data['id'] ?>">Hapus</a>
+            <a class="btn btn-warning" href="?page=dokter/dokter_edit&id=<?php echo $data['id']; ?>">Edit</a>
+            <a class="btn btn-danger" href="?page=dokter/aksi_dokter&action=delete&id=<?php echo $data['id'] ?>">Hapus</a>
           </td>
         </tr>
       <?php

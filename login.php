@@ -10,10 +10,10 @@ $swalText = '';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST["username"];
     $password = $_POST["password"];
-    $role = $_POST["role"]; // New line to get the selected role
+    $role = $_POST["role"];
 
     $stmt = $mysqli->prepare("SELECT * FROM user WHERE username=? AND role=?");
-    $stmt->bind_param("ss", $username, $role); // Updated to include role
+    $stmt->bind_param("ss", $username, $role);
     $stmt->execute();
     $result = $stmt->get_result();
 
@@ -23,6 +23,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['user_id'] = $row['id'];
             $_SESSION['username'] = $row['username'];
             $_SESSION['role'] = $row['role'];
+
+            $showSwal = true;
+            $swalType = 'success';
+            $swalTitle = 'Login berhasil';
+            $swalText = 'Selamat datang, ' . $row['username'] . '!';
+
             header("Location: index.php");
             exit;
         } else {
@@ -37,6 +43,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $swalTitle = 'Login gagal';
         $swalText = 'Username atau Password salah.';
     }
+
     $stmt->close();
 }
 ?>
