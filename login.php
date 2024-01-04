@@ -58,27 +58,93 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+
+    <style>
+        body {
+            background-color: #f0f2f5;
+        }
+
+        .container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .card {
+            width: 400px;
+            border: none;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-title {
+            font-size: 24px;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+
+        .form-control {
+            height: 40px;
+            font-size: 16px;
+        }
+
+        .btn-primary {
+            background-color: #1877f2;
+            border: none;
+            height: 40px;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .btn-primary:hover {
+            background-color: #0e5a8a;
+        }
+
+        .text-danger {
+            font-size: 14px;
+        }
+
+        .mt-2 {
+            margin-top: 10px;
+        }
+
+        .mt-3 {
+            margin-top: 15px;
+        }
+
+        a {
+            color: #1877f2;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 
 <body>
 
-    <div class="container mt-5">
-        <div class="row justify-content-center">
-            <div class="col-md-6">
-                <div class="card">
-                    <div class="card-body">
-                        <div id="loginForm">
-                            <h4 class="card-title text-center mb-4">Masuk</h4>
-                            <form method="POST" action="">
-                                <div class="mb-3">
-                                    <label for="loginUsername" class="form-label font">Username</label>
-                                    <input type="text" name="username" class="form-control" id="loginUsername" placeholder="Username" required>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="loginPassword" class="form-label">Password</label>
-                                    <input type="password" name="password" class="form-control" id="loginPassword" placeholder="Password" required>
-                                </div>
-                                <div class="mb-3">
+    <div class="container">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Masuk</h4>
+                <form method="POST" action="">
+                    <div class="mb-3">
+                        <label for="loginUsername" class="form-label">Username</label>
+                        <input type="text" name="username" class="form-control" id="loginUsername" placeholder="Email atau Telepon" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="loginPassword" class="form-label">Password</label>
+                        <input type="password" name="password" class="form-control" id="loginPassword" placeholder="Password" required>
+                    </div>
+                    <div class="mb-3">
                                     <label for="role" class="form-label">Anda masuk sebagai :</label>
                                     <select class="form-control" name="role" id="role" required>
                                         <option value="user">Pengunjung</option>
@@ -86,16 +152,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                         <option value="admin">Admin</option>
                                     </select>
                                 </div>
-                                <button type="submit" name="login" class="btn btn-primary w-100">Login</button>
-                                <p class="text-danger mt-2"><?php echo $error; ?></p>
-                                <div class="text-center mt-3">
-                                    Belum punya akun? <a href="register.php">Daftar sekarang</a>
-                                </div>
-                            </form>
-                        </div>
-
+                    <div class="mb-3">
+                        <button type="submit" name="login" class="btn btn-primary w-100">Login</button>
                     </div>
-                </div>
+                    <p class="text-danger mt-2"><?php echo $error; ?></p>
+                    <div class="text-center mt-3">
+                        Belum punya akun? <a href="register.php">Daftar sekarang</a>
+                    </div>
+                                <div class="text-center mt-3">
+                <a href="index.php" class="btn btn-primary">Kembali ke Dashboard</a>
+            </div>
+                </form>
             </div>
         </div>
     </div>
@@ -116,3 +183,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </body>
 
 </html>
+
+
+
