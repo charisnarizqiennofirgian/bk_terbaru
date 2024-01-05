@@ -147,7 +147,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <div class="mb-3">
                                     <label for="role" class="form-label">Anda masuk sebagai :</label>
                                     <select class="form-control" name="role" id="role" required>
-                                        <option value="user">Pengunjung</option>
+                                        <option value="user">Pasien</option>
                                         <option value="dokter">Dokter</option>
                                         <option value="admin">Admin</option>
                                     </select>

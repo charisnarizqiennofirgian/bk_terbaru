@@ -8,14 +8,15 @@ if (isset($_SESSION['user_id'])) {
     } elseif ($_SESSION['role'] == 'dokter') {
         header("Location: doctor.php");
         exit;
-    } elseif ($_SESSION['role'] == 'pengunjung') {
-        header("Location: pasien.php");
+    } elseif ($_SESSION['role'] == 'user') {
+        header("Location: pasien.php"); 
         exit;
     }
 }
 
 require_once("db/koneksi.php");
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -73,7 +74,7 @@ require_once("db/koneksi.php");
                     <img src="assets/images/banner.jpg" alt="Poliklinik MyCare">
                 </div>
             </div>
-        </div>
+        </div>`
     </div>
 </div>
 

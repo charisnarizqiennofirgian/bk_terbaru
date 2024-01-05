@@ -31,8 +31,8 @@ include("C:/xampp/htdocs/poliklinik/db/koneksi.php");
 </div>
 
 
-<div class="container mt-4">
-  <h3 class="mt-5 text-center">DAFTAR PASIEN</h3>
+<div class="container mt-4" style="background-color: #ffffff;">
+  <h3 class="mt-5 text-center">DAFTAR POLI</h3>
   <table class="table table-striped mt-3" id="daftar-pasien">
     <thead>
       <tr>
@@ -42,6 +42,9 @@ include("C:/xampp/htdocs/poliklinik/db/koneksi.php");
       </tr>
     </thead>
     <tbody>
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#pasienModal">
+    Tambah
+  </button>
       <?php
       $result = mysqli_query($mysqli, "SELECT * FROM poli");
       $no = 1;
@@ -61,9 +64,6 @@ include("C:/xampp/htdocs/poliklinik/db/koneksi.php");
       ?>
     </tbody>
   </table>
-  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#pasienModal">
-    Tambah
-  </button>
 </div>
 
 <script>

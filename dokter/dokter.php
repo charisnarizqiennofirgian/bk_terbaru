@@ -30,7 +30,7 @@ include("C:/xampp/htdocs/poliklinik/db/koneksi.php");
   </div>
 </div>
 
-<div class="container mt-5 mb-5">
+<div class="container mt-5 mb-5" style="background-color: #ffffff;">
   <h3 class="mt-5 text-center">DAFTAR DOKTER</h3>
   <table class="table table-striped mt-3" id="daftar-dokter">
     <thead>
@@ -61,29 +61,25 @@ include("C:/xampp/htdocs/poliklinik/db/koneksi.php");
       <?php
       }
       ?>
-    </tbody>
-  </table>
-
-  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#dokterModal">
-    Tambah
-  </button>
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#dokterModal">
+          Tambah
+        </button>
 </div>
 
 <script>
   $(document).ready(function() {
     var table = $('#daftar-dokter').DataTable({
-      dom: 'Bfrtip', // Show buttons in the specified location
+      dom: 'Bfrtip',
       buttons: [{
-        extend: 'excel', // Use the Excel export button
-        text: 'Export to Excel', // Set the custom text for the button
-        title: 'Daftar Dokter', // Set the title for the Excel sheet
-        className: 'btn btn-primary' // Add Bootstrap 5 button classes
+        extend: 'excel',
+        text: 'Export to Excel',
+        title: 'Daftar Dokter',
+        className: 'btn btn-primary' 
       }],
     });
 
-    // Add a click event handler for the export button
     $('#export-excel').on('click', function() {
-      table.buttons('excel').trigger(); // Trigger the Excel export action
+      table.buttons('excel').trigger();
     });
   });
 </script>

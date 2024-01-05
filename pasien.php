@@ -6,7 +6,7 @@ if (!isset($_SESSION['user_id'])) {
     exit;
 }
 
-if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'dokter') {
+if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'user') {
     header("Location: unauthorized.php");
     exit;
 }
