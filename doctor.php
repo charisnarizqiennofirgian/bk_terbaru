@@ -41,9 +41,7 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'dokter') {
                         <h1>MyCare</h1>
                     </a>
                     <ul class="nav">
-                      <li><a href="?page=dokter/dokter" class="active">Dokter</a></li>
-                      <li><a href="?page=obat/obat" class="active">Obat</a></li>
-                      <li><a href="?page=pasien/pasien" class="active">Pasien</a></li>
+                      <li><a href="?page=periksa/periksa" class="active">Daftar Periksa</a></li>
                       <li><a href="?page=poli/poli" class="active">Poli</a></li>
                       <li><a href="logout.php" class="active">Logout</a></li>
                   </ul>   
@@ -61,7 +59,7 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'dokter') {
         <div class="row">
             <div class="col-lg-6 align-self-center">
                 <div class="caption header-text">
-                    <h2>Selamat Datang Admin</h2>
+                    <h2>Selamat Datang Dokter</h2>
                 </div>
             </div>
     <?php

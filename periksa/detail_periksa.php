@@ -5,12 +5,12 @@
   if (isset($_GET['id'])) {
     $id = $_GET['id'];
 
-    $query = "SELECT pr.id, p.nama AS nama_pasien, d.nama AS nama_dokter, pr.tanggal_periksa, pr.waktu, o.nama AS nama_obat, pr.catatan, o.harga AS harga_obat
-                      FROM periksa pr 
-                      JOIN pasien p ON pr.id_pasien = p.id 
-                      JOIN dokter d ON pr.id_dokter = d.id 
-                      JOIN obat o ON pr.id_obat = o.id 
-                      WHERE pr.id = $id";
+$query = "SELECT pr.id, p.nama AS nama_pasien, d.nama AS nama_dokter, pr.tanggal_periksa, pr.waktu, o.nama AS nama_obat, pr.catatan
+          FROM periksa pr 
+          JOIN pasien p ON pr.id_pasien = p.id 
+          JOIN dokter d ON pr.id_dokter = d.id 
+          JOIN obat o ON pr.id_obat = o.id 
+          ORDER BY pr.tanggal_periksa ASC";
 
     $result = mysqli_query($mysqli, $query);
 

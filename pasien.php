@@ -29,7 +29,6 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'user') {
     <link rel="stylesheet"href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
 
   </head>
-
 <body>
 
   <header class="header-area header-sticky">
@@ -41,10 +40,7 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'user') {
                         <h1>MyCare</h1>
                     </a>
                     <ul class="nav">
-                      <li><a href="?page=dokter/dokter" class="active">Dokter</a></li>
-                      <li><a href="?page=obat/obat" class="active">Obat</a></li>
-                      <li><a href="?page=pasien/pasien" class="active">Pasien</a></li>
-                      <li><a href="?page=poli/poli" class="active">Poli</a></li>
+                      <li><a href="?page=poli/poli" class="active">Daftar Poli</a></li>
                       <li><a href="logout.php" class="active">Logout</a></li>
                   </ul>   
                     <a class='menu-trigger'>
@@ -61,7 +57,7 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'user') {
         <div class="row">
             <div class="col-lg-6 align-self-center">
                 <div class="caption header-text">
-                    <h2>Selamat Datang Admin</h2>
+                    <h2>Selamat Datang</h2>
                 </div>
             </div>
     <?php

@@ -39,6 +39,6 @@ if (isset($_GET['id'])) {
       <label for="harga" class="form-label">Nomor HP</label>
       <input type="text" class="form-control" id="harga" name="harga" value="<?php echo $row['harga']; ?>">
     </div>
-    <button type="submit" class="btn btn-primary">Update</button>
+    <button type="submit" class="btn btn-warning">Update</button>
   </form>
 </div>

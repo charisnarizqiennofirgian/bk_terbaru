@@ -1,5 +1,6 @@
 <?php
 include("C:/xampp/htdocs/poliklinik/db/koneksi.php");
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nama = $_POST['nama'];
     $no_ktp = $_POST['no_ktp'];

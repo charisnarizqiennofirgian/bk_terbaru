@@ -30,7 +30,6 @@ include("C:/xampp/htdocs/poliklinik/db/koneksi.php");
   </div>
 </div>
 
-
 <div class="container mt-4" style="background-color: #ffffff;">
   <h3 class="mt-5 text-center">DAFTAR PASIEN</h3>
   <table class="table table-striped mt-3" id="daftar-pasien">
@@ -44,9 +43,9 @@ include("C:/xampp/htdocs/poliklinik/db/koneksi.php");
       </tr>
     </thead>
     <tbody>
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#pasienModal">
-    Tambah
-  </button>
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#pasienModal"> <!-- Use data-toggle and data-target instead of data-bs-toggle and data-bs-target -->
+        Tambah
+      </button>
       <?php
       $result = mysqli_query($mysqli, "SELECT * FROM pasien");
       $no = 1;
@@ -72,16 +71,16 @@ include("C:/xampp/htdocs/poliklinik/db/koneksi.php");
 <script>
   $(document).ready(function() {
     var table = $('#daftar-pasien').DataTable({
-      dom: 'Bfrtip', 
+      dom: 'Bfrtip',
       buttons: [{
         extend: 'excel',
-        text: 'Export to Excel', 
-        title: 'Daftar Pasien', 
-        className: 'btn btn-primary' 
+        text: 'Export to Excel',
+        title: 'Daftar Pasien',
+        className: 'btn btn-primary'
       }],
     });
     $('#export-excel').on('click', function() {
-      table.buttons('excel').trigger(); 
+      table.buttons('excel').trigger();
     });
   });
 </script>
