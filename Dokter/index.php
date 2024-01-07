@@ -3,7 +3,6 @@ if (!isset($_SESSION)) {
     session_start();
 }
 
-// Memasukkan atau mendefinisikan koneksi ke database
 include_once("../koneksi.php");
 
 if (isset($_SESSION['nip']) && isset($koneksi)) {
@@ -32,7 +31,7 @@ if (isset($_SESSION['nip']) && isset($koneksi)) {
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">Sistem Informasi Poliklinik</a>
+            <a class="navbar-brand" href="../index.php">Sistem Informasi Poliklinik</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-bs-target="#navbarNavDropdown"
                 aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -44,7 +43,6 @@ if (isset($_SESSION['nip']) && isset($koneksi)) {
                     </li>
                     <?php
                     if (isset($_SESSION['nip'])) {
-                        //menu master jika user sudah login
                         ?>
 
                         <li class="nav-item dropdown">
@@ -64,7 +62,6 @@ if (isset($_SESSION['nip']) && isset($koneksi)) {
                 </ul>
                 <?php
                 if (isset($_SESSION['nip'])) {
-                    // Jika pengguna sudah login, tampilkan tombol "Logout"
                     ?>
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item">

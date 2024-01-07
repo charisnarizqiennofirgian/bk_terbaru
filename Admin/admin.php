@@ -14,18 +14,15 @@ if (isset($_POST['simpan'])) {
     $username = $_POST['username'];
     $sandi_adm = $_POST['sandi_adm'];
 
-    // Menambahkan fungsi password_hash() untuk menghash kata sandi sebelum disimpan
     $hashed_password = password_hash($sandi_adm, PASSWORD_DEFAULT);
 
     if (isset($_POST['id'])) {
-        // Jika ID sudah ada, gunakan UPDATE
         $ubah = mysqli_query($mysqli, "UPDATE user SET 
                                             username = '$username',
                                             sandi_adm = '$hashed_password'
                                             WHERE
                                             id = '" . $_POST['id'] . "'");
     } else {
-        // Jika tidak ada ID, gunakan INSERT
         $tambah = mysqli_query($mysqli, "INSERT INTO user (username, sandi_adm) 
                                             VALUES (
                                             '$username',
@@ -58,10 +55,8 @@ if (isset($_GET['aksi'])) {
 <center><h2>Admin</h2></center>
 <br>
 <div class="container">
-    <!--Form Input Data-->
 
     <form class="form row" method="POST" action="" name="myForm" onsubmit="return(validate());">
-        <!-- Kode php untuk menghubungkan form dengan database -->
         <?php
         $username = '';
         $sandi_adm = '';
@@ -103,9 +98,7 @@ if (isset($_GET['aksi'])) {
     </form>
     <br>
     <br>
-    <!-- Table-->
     <table class="table table-hover">
-        <!--thead atau baris judul-->
         <thead>
             <tr>
                 <th scope="col">#</th>
@@ -114,9 +107,7 @@ if (isset($_GET['aksi'])) {
                 <th scope="col">Aksi</th>
             </tr>
         </thead>
-        <!--tbody berisi isi tabel sesuai dengan judul atau head-->
         <tbody>
-            <!-- Kode PHP untuk menampilkan semua isi dari tabel urut-->
             <?php
             $result = mysqli_query($mysqli, "SELECT * FROM user");
             $no = 1;
