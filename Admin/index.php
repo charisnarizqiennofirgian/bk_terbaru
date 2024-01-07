@@ -102,7 +102,6 @@ include_once("../koneksi.php");
         <a href="../index.php"><i class="fas fa-home"></i> Home</a> 
                     <?php
                     if (isset($_SESSION['username'])) {
-                        //menu master jika user sudah login
                         ?>
 
                                     <div class="mycare-dropdown">
@@ -138,14 +137,6 @@ include_once("../koneksi.php");
                     <?php
                 }
                 ?>
-                <!-- <ul class="navbar-nav ms-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="index.php?page=registerAdmin">Register</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="index.php?page=loginAdmin">Login</a>
-                </li>
-            </ul> -->
             </div>
         </div>
             <div class="mycare-content col-md-9">
