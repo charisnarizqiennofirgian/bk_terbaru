@@ -5,7 +5,6 @@ if (!isset($_SESSION)) {
     session_start();
 }
 if (!isset($_SESSION['username'])) {
-    // Jika pengguna sudah login, tampilkan tombol "Logout"
     header("Location: index.php?page=loginAdmin");
     exit;
 }
@@ -18,11 +17,9 @@ if (isset($_POST['simpan'])) {
     $nip = $_POST['nip'];
     $sandi_dokter = $_POST['sandi_dokter'];
 
-    // Menambahkan fungsi password_hash() untuk menghash kata sandi sebelum disimpan
     $hashed_password = password_hash($sandi_dokter, PASSWORD_DEFAULT);
 
     if (isset($_POST['id'])) {
-        // Jika ID sudah ada, gunakan UPDATE
         $ubah = mysqli_query($mysqli, "UPDATE dokter SET 
                                             nama_dokter = '$nama_dokter',
                                             alamat = '$alamat',
@@ -33,7 +30,6 @@ if (isset($_POST['simpan'])) {
                                             WHERE
                                             id = '" . $_POST['id'] . "'");
     } else {
-        // Jika tidak ada ID, gunakan INSERT
         $tambah = mysqli_query($mysqli, "INSERT INTO dokter (nama_dokter, alamat, no_hp, id_poli, nip, sandi_dokter) 
                                             VALUES (
                                             '$nama_dokter',
@@ -70,10 +66,8 @@ if (isset($_GET['aksi'])) {
 <center><h2>Dokter</h2></center>
 <br>
 <div class="container">
-    <!--Form Input Data-->
 
     <form class="form row" method="POST" action="" name="myForm" onsubmit="return(validate());">
-        <!-- Kode php untuk menghubungkan form dengan database -->
         <?php
         $nama_dokter = '';
         $alamat = '';
@@ -180,9 +174,7 @@ if (isset($_GET['aksi'])) {
     </form>
     <br>
     <br>
-    <!-- Table-->
     <table class="table table-hover">
-        <!--thead atau baris judul-->
         <thead>
             <tr>
                 <th scope="col">#</th>
@@ -195,9 +187,7 @@ if (isset($_GET['aksi'])) {
                 <th scope="col">Aksi</th>
             </tr>
         </thead>
-        <!--tbody berisi isi tabel sesuai dengan judul atau head-->
         <tbody>
-            <!-- Kode PHP untuk menampilkan semua isi dari tabel urut-->
             <?php
             $result = mysqli_query($mysqli, "SELECT * FROM dokter");
             $no = 1;
