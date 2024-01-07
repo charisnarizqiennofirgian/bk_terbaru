@@ -157,7 +157,7 @@ if (isset($_SESSION['nip']) && isset($koneksi)) {
                     echo "<div class='container mt-5'>
                             <h2>Selamat Datang di Sistem Informasi Poliklinik";
                     if (isset($_SESSION['nip'])) {
-                        echo ", " . $_SESSION['nama_dokter'] . "</h2><hr>";
+                        echo ", Dokter " . $_SESSION['nama_dokter'] . "</h2><hr>";
                     } else {
                         echo "</h2><hr>Silakan Login untuk menggunakan NIP dan Password yang sudah diberikan oleh Admin, apabila belum memiliki akun silahkan hubungi Admin.";
                     }

@@ -35,9 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <div class="row justify-content-center">
         <div class="col-md-6">
             <div class="card">
-                <div class="card-header text-center" style="font-weight: bold; font-size: 32px;">
-                    Dokter Login
-                </div>
+                <div class="card-header text-center" style="font-weight: bold; font-size: 32px;">Login Dokter</div>
                 <div class="card-body">
                     <form method="POST" action="index.php?page=loginDokter">
                         <?php
@@ -49,14 +47,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                     </div>';
                         }
                         ?>
-                        <div class="mb-3">
-                            <label for="nip" class="form-label">NIP</label>
-                            <input type="text" name="nip" class="form-control" required placeholder="NIP">
+                        <div class="form-group">
+                            <label for="nip">NIP</label>
+                            <input type="text" name="nip" class="form-control" required placeholder="Masukkan NIP anda">
                         </div>
-                        <div class="mb-3">
-                            <label for="sandi_dokter" class="form-label">Password</label>
+                        <div class="form-group" style="padding-bottom: 20px">
+                            <label for="sandi_dokter">Sandi Dokter</label>
                             <input type="password" name="sandi_dokter" class="form-control" required
-                                placeholder="Password">
+                                placeholder="Masukkan sandi dokter anda">
                         </div>
                         <div class="text-center">
                             <button type="submit" class="btn btn-primary btn-block">Login</button>

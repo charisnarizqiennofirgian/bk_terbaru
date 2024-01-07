@@ -213,7 +213,7 @@ $conn->close();
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="text-center">Ubah Profil Dokter</h3>
+                        <h3 class="text-center">Ubah Profile</h3>
                     </div>
                     <div class="card-body">
                         <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">

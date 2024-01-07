@@ -110,6 +110,7 @@ if (isset($_GET['nama_dokter'])) {
     <div class="mycare-sidebar">
         <a class="navbar-brand" href="../index.php">My Care</a>
         <a href="index.php"><i class="fas fa-home"></i> Home</a>
+        
         <?php
         if (isset($_SESSION['nama_pasien'])) {
             ?>
@@ -153,6 +154,30 @@ if (isset($_GET['nama_dokter'])) {
                     </tr>
                 </thead>
                 <tbody>
+                            <?php
+                            $mysqli = new mysqli("localhost", "root", "", "poli");
+                            if ($mysqli->connect_error) {
+                                die("Koneksi database gagal: " . $mysqli->connect_error);
+                            }
+                            $query = "SELECT * FROM pasien LIMIT 1";
+
+                            $result = $mysqli->query($query);
+
+                            if ($result->num_rows > 0) {
+                                $row = $result->fetch_assoc();
+                                ?>
+                                <h1><?php echo $row['nama_pasien']; ?></h1>
+                                <p class="title">Nomor Rekam Medis: <?php echo $row['no_rm']; ?></p>
+                                <p>Alamat: <?php echo $row['alamat']; ?></p>
+                                <p>No. KTP: <?php echo $row['no_ktp']; ?></p>
+                                <p>No. HP: <?php echo $row['no_hp']; ?></p>
+                            <?php
+                            } else {
+                                echo "Data pasien tidak ditemukan";
+                            }
+
+                            $mysqli->close();
+                            ?>
                     <?php
                     $mysqli = new mysqli("localhost", "root", "", "poli"); // Ganti dengan informasi koneksi database yang benar
                     
