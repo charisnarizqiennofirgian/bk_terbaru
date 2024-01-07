@@ -100,7 +100,7 @@ include_once("../koneksi.php");
 <body>
     <div class="mycare-sidebar">
         <a class="navbar-brand" href="../index.php">My Care</a>
-        <a href="index.php"><i class="fas fa-home"></i> Home</a>
+        <a href="../index.php"><i class="fas fa-home"></i> Home</a>
         <?php
         if (isset($_SESSION['nama_pasien'])) {
             ?>
@@ -132,13 +132,16 @@ include_once("../koneksi.php");
         if (isset($_GET['page'])) {
             include($_GET['page'] . ".php");
         } else {
-            echo "<br><h2>Selamat Datang di Sistem Informasi Poliklinik";
-
-            if (isset($_SESSION['nama_pasien'])) {
-                echo ", " . $_SESSION['nama_pasien'] . "</h2><hr>";
-            } else {
-                echo "</h2><hr>Silakan Login untuk menggunakan sistem pendaftaran poli dengan memasukkan Nomor Rekam Medis. Jika belum memiliki Nomor Rekam Medis silakan registrasi terlebih dahulu.";
-            }
+            echo "<div class='container mt-5'>
+                    <h2>Selamat Datang di MyCare Poliklinik</h2>
+                    <p>MyCare adalah sistem informasi poliklinik yang dirancang untuk memudahkan Anda dalam melakukan pendaftaran poliklinik secara online. Dengan MyCare, Anda dapat:</p>
+                    <ul>
+                        <li>Mendaftar ke berbagai poliklinik tanpa harus datang ke rumah sakit secara langsung.</li>
+                        <li>Melihat jadwal dokter dan memilih waktu yang sesuai dengan kenyamanan Anda.</li>
+                        <li>Mengisi keluhan Anda secara online untuk mempermudah proses pelayanan dokter.</li>
+                    </ul>
+                    <p>Jika Anda sudah memiliki akun, silakan login untuk mengakses layanan MyCare. Jika belum memiliki akun, Anda dapat melakukan registrasi pada halaman Registrasi Pasien.</p>
+                    </div>";
         }
         ?>
     </div>

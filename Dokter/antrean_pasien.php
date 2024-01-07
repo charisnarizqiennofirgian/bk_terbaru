@@ -1,16 +1,10 @@
 <?php
-// Lakukan pengecekan koneksi ke database dan set session jika belum ada
 if (!isset($_SESSION)) {
     session_start();
 }
-
-// Sisipkan file koneksi.php
 include_once("../koneksi.php");
-
-// Inisialisasi variabel $id_dokter
 $id_dokter = null;
 
-// Lakukan query untuk mendapatkan data dokter berdasarkan NIP yang sudah login
 if (isset($_SESSION['nip'])) {
     $nip = $_SESSION['nip'];
     $query = "SELECT id FROM dokter WHERE nip = '$nip'";
@@ -20,10 +14,8 @@ if (isset($_SESSION['nip'])) {
         die("Query error: " . $mysqli->error);
     }
 
-    // Ambil data dokter
     if ($result->num_rows > 0) {
         $row = $result->fetch_assoc();
-        // Tetapkan nilai $id_dokter jika data dokter ditemukan
         $id_dokter = $row['id'];
     } else {
         echo "Data dokter tidak ditemukan";
@@ -31,7 +23,6 @@ if (isset($_SESSION['nip'])) {
     }
 }
 
-// Query untuk mengambil daftar pasien yang mendaftar pada jadwal dokter yang sedang login
 $query_daftar_pasien = "SELECT dp.id, p.nama_pasien, dp.keluhan, dp.no_antrian, dp.status_periksa
                         FROM daftar_poli dp 
                         JOIN pasien p ON dp.id_pasien = p.id 
@@ -71,7 +62,6 @@ if (!$result_daftar_pasien) {
                     </li>
                     <?php
                     if (isset($_SESSION['nip'])) {
-                        //menu master jika user sudah login
                         ?>
 
                         <li class="nav-item dropdown">
@@ -91,7 +81,6 @@ if (!$result_daftar_pasien) {
                 </ul>
                 <?php
                 if (isset($_SESSION['nip'])) {
-                    // Jika pengguna sudah login, tampilkan tombol "Logout"
                     ?>
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item">
@@ -102,27 +91,15 @@ if (!$result_daftar_pasien) {
                     </ul>
                     <?php
                 } else {
-                    // Jika pengguna belum login, tampilkan tombol "Login" dan "Register"
                     ?>
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item">
                             <a class="nav-link" href="index.php?page=loginDokter">Login</a>
                         </li>
-                        <!-- <li class="nav-item">
-                            <a class="nav-link" href="index.php?page=registerDokter">Registrasi Pasien</a>
-                        </li> -->
                     </ul>
                     <?php
                 }
                 ?>
-                <!-- <ul class="navbar-nav ms-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="index.php?page=registerAdmin">Register</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="index.php?page=loginAdmin">Login</a>
-                </li>
-            </ul> -->
             </div>
         </div>
     </nav>
@@ -153,7 +130,6 @@ if (!$result_daftar_pasien) {
                                 echo '<td>' . $row_daftar_pasien['keluhan'] . '</td>';
                                 echo '<td>' . $row_daftar_pasien['no_antrian'] . '</td>';
 
-                                // Lakukan query untuk memeriksa apakah pasien sudah diperiksa atau belum
                                 $query_cek_periksa = "SELECT * FROM periksa WHERE id_daftar_poli = " . $row_daftar_pasien['id'];
                                 $result_cek_periksa = $mysqli->query($query_cek_periksa);
 
@@ -161,15 +137,12 @@ if (!$result_daftar_pasien) {
                                     die("Query error: " . $mysqli->error);
                                 }
 
-                                // Menambahkan tombol Edit atau Periksa Pasien berdasarkan status periksa
                                 echo '<td>';
                                 if ($result_cek_periksa->num_rows > 0) {
-                                    // Data pasien sudah ada di tabel periksa, maka tombol Edit aktif dan tombol Periksa Pasien nonaktif
                                     echo "<a href='edit_periksa.php?id=" . $row_daftar_pasien['id'] . "&nama_pasien=" . $row_daftar_pasien['nama_pasien'] . "&keluhan=" . $row_daftar_pasien['keluhan'] . "&no_antrian=" . $row_daftar_pasien['no_antrian'] . "' class='btn btn-warning'>Edit</a>";
                                     echo "<button class='btn btn-primary' disabled>Periksa Pasien</button>";
 
                                 } else {
-                                    // Data pasien belum ada di tabel periksa, maka tombol Edit nonaktif dan tombol Periksa Pasien aktif
                                     echo "<button class='btn btn-warning' disabled>Edit</button>";
                                     echo "<a href='periksa_pasien.php?id=" . $row_daftar_pasien['id'] . "&nama_pasien=" . $row_daftar_pasien['nama_pasien'] . "&keluhan=" . $row_daftar_pasien['keluhan'] . "&no_antrian=" . $row_daftar_pasien['no_antrian'] . "' class='btn btn-primary'>Periksa Pasien</a>";
                                 }

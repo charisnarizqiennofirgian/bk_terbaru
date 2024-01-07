@@ -208,7 +208,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit_keluhan'])) {
 <body>
     <div class="mycare-sidebar">
         <a class="navbar-brand" href="../index.php">My Care</a>
-        <a href="index.php"><i class="fas fa-home"></i> Home</a>
+        <a href="../index.php"><i class="fas fa-home"></i> Home</a>
             <div class="mycare-dropdown">
                 <a href="#"><i class="fas fa-bars"></i> Menu</a>
                 <div class="mycare-dropdown-content">

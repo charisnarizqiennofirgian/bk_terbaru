@@ -24,7 +24,6 @@ if (isset($_GET['nama_dokter'])) {
     <title>Daftar Poli Poliklinik</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        /* Your existing styles here */
 
         .mycare-sidebar {
             height: 100vh;
@@ -33,7 +32,7 @@ if (isset($_GET['nama_dokter'])) {
             left: 0;
             width: 250px;
             padding-top: 15px;
-            background-color: #4267b2; /* Warna biru Facebook */
+            background-color: #4267b2; 
             color: #fff;
             transition: all 0.3s;
             z-index: 1;
@@ -52,19 +51,19 @@ if (isset($_GET['nama_dokter'])) {
 
         .mycare-sidebar a:hover {
             padding-left: 20px;
-            background-color: #3a5795; /* Warna biru Facebook lebih gelap saat di-hover */
+            background-color: #3a5795;
         }
 
         .mycare-sidebar .navbar-brand {
             font-size: 1.8rem;
             color: #fff;
             font-weight: bold;
-            margin-bottom: 20px; /* Jarak antara brand dan link */
+            margin-bottom: 20px; 
         }
 
         .mycare-dropdown-content {
             display: none;
-            background-color: #3a5795; /* Warna biru Facebook pada dropdown */
+            background-color: #3a5795; 
             min-width: 160px;
             box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
             z-index: 1;
@@ -79,7 +78,7 @@ if (isset($_GET['nama_dokter'])) {
         }
 
         .mycare-dropdown-content a:hover {
-            background-color: #29487d; /* Warna biru Facebook lebih gelap pada dropdown saat di-hover */
+            background-color: #29487d; 
         }
 
         .mycare-dropdown:hover .mycare-dropdown-content {
@@ -115,7 +114,7 @@ if (isset($_GET['nama_dokter'])) {
         if (isset($_SESSION['nama_pasien'])) {
             ?>
             <div class="mycare-dropdown">
-                <a href="#"><i class="fas fa-bars"></i> Menu</a>
+                <a href="../index.php"><i class="fas fa-bars"></i> Menu</a>
                 <div class="mycare-dropdown-content">
                     <a href="daftar_poli.php?page=dokter"><i class="fas fa-user-md"></i> Mendaftar ke Poli</a>
                 </div>

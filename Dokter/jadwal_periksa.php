@@ -1,16 +1,12 @@
 <?php
-// Lakukan pengecekan koneksi ke database dan set session jika belum ada
 if (!isset($_SESSION)) {
     session_start();
 }
 
-// Sisipkan file koneksi.php
 include_once("../koneksi.php");
 
-// Inisialisasi variabel $id_dokter
 $id_dokter = null;
 
-// Lakukan query untuk mendapatkan data dokter berdasarkan NIP yang sudah login
 if (isset($_SESSION['nip'])) {
     $nip = $_SESSION['nip'];
     $query = "SELECT id FROM dokter WHERE nip = '$nip'";
@@ -20,10 +16,8 @@ if (isset($_SESSION['nip'])) {
         die("Query error: " . $mysqli->error);
     }
 
-    // Ambil data dokter
     if ($result->num_rows > 0) {
         $row = $result->fetch_assoc();
-        // Tetapkan nilai $id_dokter jika data dokter ditemukan
         $id_dokter = $row['id'];
     } else {
         echo "Data dokter tidak ditemukan";
@@ -31,7 +25,6 @@ if (isset($_SESSION['nip'])) {
     }
 }
 
-// Query untuk mengambil jadwal periksa dokter yang sedang login
 $query_jadwal = "SELECT hari, jam_mulai, jam_selesai FROM jadwal_periksa WHERE id_dokter = '$id_dokter'";
 $result_jadwal = $mysqli->query($query_jadwal);
 
@@ -41,45 +34,111 @@ if (!$result_jadwal) {
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jadwal Periksa Dokter</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Daftar Poli Poliklinik</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+
+        .mycare-sidebar {
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 250px;
+            padding-top: 15px;
+            background-color: #4267b2; 
+            color: #fff;
+            transition: all 0.3s;
+            z-index: 1;
+            overflow-x: hidden;
+            box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .mycare-sidebar a {
+            padding: 15px;
+            text-decoration: none;
+            font-size: 1.2rem;
+            color: #fff;
+            display: block;
+            transition: padding 0.3s;
+        }
+
+        .mycare-sidebar a:hover {
+            padding-left: 20px;
+            background-color: #3a5795;
+        }
+
+        .mycare-sidebar .navbar-brand {
+            font-size: 1.8rem;
+            color: #fff;
+            font-weight: bold;
+            margin-bottom: 20px; 
+        }
+
+        .mycare-dropdown-content {
+            display: none;
+            background-color: #3a5795; 
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+            position: absolute;
+        }
+
+        .mycare-dropdown-content a {
+            padding: 12px 16px;
+            display: block;
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .mycare-dropdown-content a:hover {
+            background-color: #29487d; 
+        }
+
+        .mycare-dropdown:hover .mycare-dropdown-content {
+            display: block;
+        }
+
+        .mycare-content {
+            margin-left: 250px;
+            padding: 20px;
+            transition: margin-left 0.3s;
+            width: calc(100% - 250px);
+            float: right;
+        }
+
+        @media (max-width: 768px) {
+            .mycare-sidebar {
+                left: -250px;
+            }
+
+            .mycare-content {
+                margin-left: 0;
+                width: 100%;
+            }
+        }
+    </style>
 </head>
 
 <body>
-
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">Sistem Informasi Poliklinik</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-bs-target="#navbarNavDropdown"
-                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="index.php">Home</a>
-                    </li>
+    <div class="mycare-sidebar">
+        <a class="navbar-brand" href="../index.php">My Care</a>
+        <a href="../index.php"><i class="fas fa-home"></i> Home</a>
                     <?php
                     if (isset($_SESSION['nip'])) {
-                        //menu master jika user sudah login
                         ?>
-
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                                aria-expanded="false">Menu</a>
-                            <ul class="dropdown-menu">
-                                <li>
+                                    <div class="mycare-dropdown">
+                <a href="../index.php"><i class="fas fa-bars"></i> Menu</a>
+                <div class="mycare-dropdown-content">
                                     <a class="dropdown-item" href="ubah_profil.php?page=ubah_profil">Ubah Profil Dokter</a>
                                     <a class="dropdown-item" href="atur_jadwal.php?page=atur_jadwal">Atur jadwal poli</a>
                                     <a class="dropdown-item" href="jadwal_periksa.php?page=antrean_pasien">Jadwal Saya</a>
-                                    <a class="dropdown-item" href="riwayat_pasien.php?page=riwayat_pasien">Cari Riwayat Pasien</a>                                </li>
-                            </ul>
-                        </li>
+                                    <a class="dropdown-item" href="riwayat_pasien.php?page=riwayat_pasien">Cari Riwayat Pasien</a>                                                </div>
+            </div>
                         <?php
                     }
                     ?>
