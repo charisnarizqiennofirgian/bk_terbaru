@@ -1,7 +1,7 @@
 <?php
 
 $databaseHost = 'localhost';
-$databaseName = 'poli';
+$databaseName = 'mycare';
 $databaseUsername = 'root';
 $databasePassword = '';
 
@@ -10,5 +10,3 @@ $mysqli = mysqli_connect($databaseHost, $databaseUsername, $databasePassword, $d
 if (mysqli_connect_errno()) {
     die("Koneksi database gagal: " . mysqli_connect_error());
 }
-
-?>
